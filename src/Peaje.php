@@ -9,9 +9,8 @@ class Peaje{
 
     public function ejecutar(string $instruccion):string{
         $partesInstruccion = explode(" ",$instruccion);
-        $accion = strtolower($partesInstruccion[0] ?? " ");    
-        $matricula = $partesInstruccion[1] ?? " ";
 
+        $matricula = $partesInstruccion[1] ?? " ";
 
         $tipo = $this->servicio->obtenerTipoVehiculo($matricula);
         
@@ -21,6 +20,7 @@ class Peaje{
         }
         
         $precioFormateado = number_format($precio, 2, '.', '');
+
         return "Matricula: $matricula | Total: $precioFormateado";
     }
 }
