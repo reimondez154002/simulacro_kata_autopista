@@ -9,9 +9,13 @@ class Peaje{
 
     public function ejecutar(string $instruccion):string{
         $partesInstruccion = explode(" ",$instruccion);
-
+        $accion  = strtolower($partesInstruccion[0] ?? " ");
         $matricula = strtolower($partesInstruccion[1] ?? " ");
 
+        if($accion !== "procesar"){
+            
+            return "Accion no reconocida";
+        }
         $tipo = $this->servicio->obtenerTipoVehiculo($matricula);
         
         switch ($tipo) {
