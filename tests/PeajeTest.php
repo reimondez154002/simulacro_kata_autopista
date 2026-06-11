@@ -24,4 +24,22 @@ class PeajeTest extends PHPUnit\Framework\TestCase {
         $this->assertEquals("Matricula: 1234bbb | Total: 5.00",$resultado);
     }
 
+    
+    public function test_comprobar_matricula_en_mayusculas():void{
+        
+        //Arrange
+        $servicioMock = $this->createMock(ServicioDGT::class);
+        $servicioMock->method("obtenerTipoVehiculo")->willReturnCallback(function($matricula){
+            if($matricula === "1234bbb"){
+
+                return null;
+            }
+        });
+        $this->peaje = new Peaje($servicioMock);
+        //Act
+        $resultado = $this->peaje->ejecutar("procesar 1234BBB");
+        //Assert
+        $this->assertEquals("Matricula: 1234bbb | Total: 5.00",$resultado);
+    }
+
 }
