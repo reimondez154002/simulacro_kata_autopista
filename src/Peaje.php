@@ -15,5 +15,4 @@ class Peaje{
 
 interface ServicioDGT {
     public function obtenerTipoVehiculo(string $matricula): ?string; 
-    // Puede devolver: 'electrico', 'residente', 'ambos', o null
 }
