@@ -11,13 +11,16 @@ class PeajeTest extends PHPUnit\Framework\TestCase {
         //Arrange
         $servicioMock = $this->createMock(ServicioDGT::class);
         $servicioMock->method("obtenerTipoVehiculo")->willReturnCallback(function($matricula){
-            if($matricula === "1234bbb"){
+            
+            switch($matricula){
+                case("1234bbb"):
 
-                return null;
-            }
-            if($matricula === "1234eee"){
+                    return null;
+                    break;
+                case("1234eee"):
 
-                return "electrico";
+                    return "electrico";
+                    break;
             }
         });
         $this->peaje = new Peaje($servicioMock);

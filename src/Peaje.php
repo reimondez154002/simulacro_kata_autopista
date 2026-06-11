@@ -2,7 +2,7 @@
 class Peaje{
 
     private ServicioDGT $servicio;
-
+    private float $precio = 5.00;
     public function __construct(ServicioDGT $servicio){
         $this->servicio = $servicio;
     }
@@ -21,15 +21,14 @@ class Peaje{
         switch ($tipo) {
 
             case null:
-                $precio = 5.00;
                 break;
 
             case "electrico":
-                $precio = 2.50;
+                $this->precio = $this->precio*0.5;
                 break;
         }
         
-        $precioFormateado = number_format($precio, 2, '.', '');
+        $precioFormateado = number_format($this->precio, 2, '.', '');
 
         return "Matricula: $matricula | Total: $precioFormateado";
     }
