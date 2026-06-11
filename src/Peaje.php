@@ -10,7 +10,7 @@ class Peaje{
     public function ejecutar(string $instruccion):string{
         $partesInstruccion = explode(" ",$instruccion);
 
-        $matricula = $partesInstruccion[1] ?? " ";
+        $matricula = strtolower($partesInstruccion[1] ?? " ");
 
         $tipo = $this->servicio->obtenerTipoVehiculo($matricula);
         
