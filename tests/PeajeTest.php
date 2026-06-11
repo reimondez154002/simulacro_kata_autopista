@@ -7,8 +7,7 @@ class PeajeTest extends PHPUnit\Framework\TestCase {
     
     private Peaje $peaje;
 
-    public function test_comprobar_matricula_sin_descuento():void{
-        
+    public function setUp():void{
         //Arrange
         $servicioMock = $this->createMock(ServicioDGT::class);
         $servicioMock->method("obtenerTipoVehiculo")->willReturnCallback(function($matricula){
@@ -18,45 +17,26 @@ class PeajeTest extends PHPUnit\Framework\TestCase {
             }
         });
         $this->peaje = new Peaje($servicioMock);
-        //Act
+    }
+
+    public function test_comprobar_matricula_sin_descuento():void{
+        //Ejecutar accion
         $resultado = $this->peaje->ejecutar("procesar 1234bbb");
-        //Assert
+        //Comprobar
         $this->assertEquals("Matricula: 1234bbb | Total: 5.00",$resultado);
     }
 
-    
     public function test_comprobar_matricula_en_mayusculas():void{
-        
-        //Arrange
-        $servicioMock = $this->createMock(ServicioDGT::class);
-        $servicioMock->method("obtenerTipoVehiculo")->willReturnCallback(function($matricula){
-            if($matricula === "1234bbb"){
-
-                return null;
-            }
-        });
-        $this->peaje = new Peaje($servicioMock);
-        //Act
+        //Ejecutar accion
         $resultado = $this->peaje->ejecutar("procesar 1234BBB");
-        //Assert
+        //Comprobar
         $this->assertEquals("Matricula: 1234bbb | Total: 5.00",$resultado);
     }
 
     public function test_comprobar_accion_que_no_es_procesar():void{
-        
-        //Arrange
-        $servicioMock = $this->createMock(ServicioDGT::class);
-        $servicioMock->method("obtenerTipoVehiculo")->willReturnCallback(function($matricula){
-            if($matricula === "1234bbb"){
-
-                return null;
-            }
-        });
-        $this->peaje = new Peaje($servicioMock);
-        //Act
+        //Ejecutar accion
         $resultado = $this->peaje->ejecutar("comprobar 1234BBB");
-        //Assert
+        //Comprobar
         $this->assertEquals("Accion no reconocida",$resultado);
     }
-
 }
