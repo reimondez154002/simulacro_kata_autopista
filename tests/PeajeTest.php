@@ -15,6 +15,10 @@ class PeajeTest extends PHPUnit\Framework\TestCase {
 
                 return null;
             }
+            if($matricula === "1234eee"){
+
+                return "electrico";
+            }
         });
         $this->peaje = new Peaje($servicioMock);
     }
@@ -38,5 +42,12 @@ class PeajeTest extends PHPUnit\Framework\TestCase {
         $resultado = $this->peaje->ejecutar("comprobar 1234BBB");
         //Comprobar
         $this->assertEquals("Accion no reconocida",$resultado);
+    }
+
+    public function test_comprobar_matricula_con_descuento_electrico():void{
+        //Ejecutar accion
+        $resultado = $this->peaje->ejecutar("procesar 1234eee");
+        //Comprobar
+        $this->assertEquals("Matricula: 1234eee | Total: 2.50",$resultado);
     }
 }

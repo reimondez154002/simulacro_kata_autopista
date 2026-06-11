@@ -19,8 +19,14 @@ class Peaje{
         $tipo = $this->servicio->obtenerTipoVehiculo($matricula);
         
         switch ($tipo) {
+
             case null:
                 $precio = 5.00;
+                break;
+
+            case "electrico":
+                $precio = 2.50;
+                break;
         }
         
         $precioFormateado = number_format($precio, 2, '.', '');
