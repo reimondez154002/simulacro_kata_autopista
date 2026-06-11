@@ -21,7 +21,7 @@ class PeajeTest extends PHPUnit\Framework\TestCase {
         //Act
         $resultado = $this->peaje->ejecutar("procesar 1234bbb");
         //Assert
-        $this->assertEquals("Matricula: 1234bbb -> Total: 5.00",$resultado);
+        $this->assertEquals("Matricula: 1234bbb | Total: 5.00",$resultado);
     }
 
 }

@@ -8,8 +8,20 @@ class Peaje{
     }
 
     public function ejecutar(string $instruccion):string{
+        $partesInstruccion = explode(" ",$instruccion);
+        $accion = strtolower($partesInstruccion[0] ?? " ");    
+        $matricula = $partesInstruccion[1] ?? " ";
+
+
+        $tipo = $this->servicio->obtenerTipoVehiculo($matricula);
         
-        return " ";
+        switch ($tipo) {
+            case null:
+                $precio = 5.00;
+        }
+        
+        $precioFormateado = number_format($precio, 2, '.', '');
+        return "Matricula: $matricula | Total: $precioFormateado";
     }
 }
 
